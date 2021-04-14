@@ -47,7 +47,7 @@ public class CalculatorTest {
     @Test
     void threeNumbers() {
         Integer actual = calc.sum("1,2,3");
-        Integer expected = -1;
+        Integer expected = 6;
         assertEquals(expected, actual);
     }
 
@@ -89,6 +89,41 @@ public class CalculatorTest {
     @Test
     void nullNumber() {
         Integer actual = calc.sum(null);
+        Integer expected = -1;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void newLine() {
+        Integer actual = calc.sum("1\n2");
+        Integer expected = 3;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void twoNewLines() {
+        Integer actual = calc.sum("1\n2\n3");
+        Integer expected = 6;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void newLineInBegin() {
+        Integer actual = calc.sum("\n1,2");
+        Integer expected = -1;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void newLineInTheEnd() {
+        Integer actual = calc.sum("1\n");
+        Integer expected = -1;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void twoLinesInRow() {
+        Integer actual = calc.sum("1\n\n2");
         Integer expected = -1;
         assertEquals(expected, actual);
     }
