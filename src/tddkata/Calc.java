@@ -3,18 +3,20 @@ package tddkata;
 public class Calc {
 
     public int sum(String expression) {
-        if (expression != null && !expression.contains("-")) {
+        if (expression != null
+                && !expression.contains("-")
+                && !expression.contains("\n\n")
+                && !expression.endsWith("\n")) {
             if (expression.equals("")) {
                 return 0;
             }
-            String[] arrayNumbers = expression.split(",");
+            String[] arrayNumbers = expression.split("[,\n]+");
             try {
-                switch (arrayNumbers.length) {
-                    case 1:
-                        return Integer.parseInt(arrayNumbers[0]);
-                    case 2:
-                        return Integer.parseInt(arrayNumbers[0]) + Integer.parseInt(arrayNumbers[1]);
+                int value = 0;
+                for (String number : arrayNumbers) {
+                    value = value + Integer.parseInt(number);
                 }
+                return value;
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
